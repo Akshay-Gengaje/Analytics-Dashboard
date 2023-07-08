@@ -1,0 +1,26 @@
+.paper {
+    margin-top: 3rem;
+}
+
+.th-row th {
+    margin: 0;
+    padding: 0.4rem;
+}
+
+
+.pagination {
+
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    /* background-color: rgba(239, 231, 235, 0.15);  */
+    vertical-align: middle;
+}
+
+.pagination p {
+    margin-top: 0.8rem;
+}
+
+@media screen and (max-width : 760px) {
+    .paper {
+        margin-top: 0;
+    }
+}

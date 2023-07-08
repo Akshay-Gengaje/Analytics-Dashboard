@@ -1,0 +1,40 @@
+.nav {
+    display: flex;
+    position: fixed;
+    top: 1rem;
+    z-index: 100;
+    justify-content: space-between;
+    padding: 0.4rem 2rem;
+    border-radius: 1rem;
+    /* background-color: rgba(239, 231, 235, 0.8); */
+    background-color: #1A1D25;
+    /* box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; */
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.nav h3 {
+    padding: 0 1rem;
+    color : wheat
+}
+
+.dropdown-btn {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    width: 10rem;
+}
+
+.dropdown-btn:hover {
+    cursor: pointer;
+    color: white;
+}
+
+@media only screen and (max-width : 760px) {
+    .nav {
+        position: static;
+        display: flex;
+        justify-content: center;
+        padding: 0.4rem 0.1rem;
+        margin-top: 1rem ;
+
+    }
+}
