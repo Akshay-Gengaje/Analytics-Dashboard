@@ -21,10 +21,14 @@ app.get("/", (req, res) => {
   res.json("Hello").status(400);
 });
 
-connectDB()
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`Server is started on PORT ${PORT}`);
-    });
-  })
-  .catch((err) => console.log(err));
+app.listen(PORT, () => {
+  console.log(`Server is started on PORT ${PORT}`);
+});
+
+// connectDB()
+//   .then(() => {
+//     app.listen(PORT, () => {
+//       console.log(`Server is started on PORT ${PORT}`);
+//     });
+//   })
+//   .catch((err) => console.log(err));
