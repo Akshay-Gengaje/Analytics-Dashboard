@@ -2,7 +2,7 @@
   "name": "roxiler-assignment-backend",
   "version": "1.0.0",
   "description": "Developing backend for products ",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"

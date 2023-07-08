@@ -16,7 +16,10 @@ app.use(
     credentials: true,
   })
 );
-app.use("/", ProductRouter.router);
+// app.use("/", ProductRouter.router);
+app.get("/", (req, res) => {
+  res.json("Hello").status(400);
+});
 
 connectDB()
   .then(() => {
