@@ -16,7 +16,7 @@ app.use(
     credentials: true,
   })
 );
-app.use("/products", ProductRouter.router);
+// app.use("/products", ProductRouter.router);
 app.get("/", (req, res) => {
   res.json("Hello").status(400);
 });
