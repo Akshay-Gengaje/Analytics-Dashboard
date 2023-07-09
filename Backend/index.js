@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 app.use(express.json());
 app.use(morgan("tiny"));
-const origins = [...process.env.ORIGINS] || "*";
+const origins = process.env.ORIGINS ? [...process.env.ORIGINS] :"*";
 app.use(
   cors({
     origin: origins,
