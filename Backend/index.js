@@ -4,11 +4,11 @@ const morgan = require("morgan");
 const connectDB = require("./Database/db");
 const ProductRouter = require("./Routes/ProductRouter");
 var cors = require("cors");
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8000;
 const app = express();
 app.use(express.json());
 app.use(morgan("tiny"));
-const origins = process.env.ORIGINS ? [...process.env.ORIGINS] :"*";
+const origins = process.env.ORIGINS ? [...process.env.ORIGINS] : "*";
 app.use(
   cors({
     origin: origins,
@@ -16,19 +16,12 @@ app.use(
     credentials: true,
   })
 );
-// app.use("/products", ProductRouter.router);
-app.get("/", (req, res) => {
-  res.json("Hello").status(400);
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is started on PORT ${PORT}`);
-});
-
-// connectDB()
-//   .then(() => {
-//     app.listen(PORT, () => {
-//       console.log(`Server is started on PORT ${PORT}`);
-//     });
-//   })
-//   .catch((err) => console.log(err));
+app.get("/", (req, res) => res.json("Welcome to dashboard"));
+app.use("/api", ProductRouter.router);
+connectDB()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server is started on PORT ${PORT}`);
+    });
+  })
+  .catch((err) => console.log(err));
