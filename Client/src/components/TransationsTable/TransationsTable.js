@@ -50,11 +50,11 @@ const TransationsTable = (props) => {
   const fetchAPI = async () => {
     const body = {
       search: search,
-      page: page + 1,
+      page: search == "" ? 1 : page + 1,
       limit: rowsPerPage,
-      month: month,
+      month: month.number,
     };
-
+    console.log("BODY :", body);
     await axios
       .get(API + "api/transections", {
         params: {
@@ -84,7 +84,7 @@ const TransationsTable = (props) => {
                 "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px",
             }}
           >
-            <div className="searchBar">
+            <div className="searchBar m-2">
               <TextField
                 id="outlined-basic"
                 label="Search"

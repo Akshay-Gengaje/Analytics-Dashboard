@@ -4,25 +4,27 @@ import { Pie } from "react-chartjs-2";
 import "./PieChart.css";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "bottom",
-    },
-    title: {
-      display: true,
-      text: "Transactions PieChart",
-      font: {
-        size: 16,
-      },
-    },
-  },
-};
 
 const PieChart = (props) => {
+  const month = props.month;
   const labels = props.response.map((label) => label._id);
   const count = props.response.map((label) => label.count);
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "bottom",
+      },
+      title: {
+        display: true,
+        text: `Transactions PieChart - ${month.name}`,
+        font: {
+          size: 16,
+        },
+      },
+    },
+  };
+  
   const data = {
     labels: labels,
     datasets: [

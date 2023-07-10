@@ -1,11 +1,14 @@
 import React from "react";
 import "./Statistics.css";
 const Statistics = (props) => {
+  const month = props.month;
   const { amount, sold, unsold } = props.response;
   return (
     <div className="box">
       <div className="card">
-        <div className="card-header text-center">Transctions Statistics</div>
+        <div className="card-header text-center">
+          Transctions Statistics - {month.name}
+        </div>
 
         <div className="card-body text-center">
           <div className="cardText text-center">

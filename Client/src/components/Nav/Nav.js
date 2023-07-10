@@ -10,20 +10,21 @@ const Nav = (props) => {
   const { month, setMonth } = props;
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const monthNumberPairs = [
-    { month: "All Months", number: 0 },
-    { month: "January", number: 1 },
-    { month: "February", number: 2 },
-    { month: "March", number: 3 },
-    { month: "April", number: 4 },
-    { month: "May", number: 5 },
-    { month: "June", number: 6 },
-    { month: "July", number: 7 },
-    { month: "August", number: 8 },
-    { month: "September", number: 9 },
-    { month: "October", number: 10 },
-    { month: "November", number: 11 },
-    { month: "December", number: 12 },
+    { name: "All Months", number: 0 },
+    { name: "January", number: 1 },
+    { name: "February", number: 2 },
+    { name: "March", number: 3 },
+    { name: "April", number: 4 },
+    { name: "May", number: 5 },
+    { name: "June", number: 6 },
+    { name: "July", number: 7 },
+    { name: "August", number: 8 },
+    { name: "September", number: 9 },
+    { name: "October", number: 10 },
+    { name: "November", number: 11 },
+    { name: "December", number: 12 },
   ];
+  console.log(month);
   const toggle = () => {
     setDropdownOpen((prevState) => !prevState);
   };
@@ -36,7 +37,7 @@ const Nav = (props) => {
             <h3>Transctions Dashboard</h3>
             <Dropdown isOpen={dropdownOpen} toggle={toggle} direction={"down"}>
               <DropdownToggle caret className="dropdown-btn">
-                {monthNumberPairs[month].month}
+                {monthNumberPairs[month.number].name}
               </DropdownToggle>
               <DropdownMenu>
                 {monthNumberPairs.map((monthNumberPair) => (
@@ -44,10 +45,10 @@ const Nav = (props) => {
                     className="dropdown-items"
                     key={monthNumberPair.number}
                     onClick={() => {
-                      setMonth(monthNumberPair.number);
+                      setMonth(monthNumberPair);
                     }}
                   >
-                    {monthNumberPair.month}
+                    {monthNumberPair.name}
                   </DropdownItem>
                 ))}
               </DropdownMenu>
