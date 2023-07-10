@@ -14,7 +14,7 @@ const TransationsTable = (props) => {
   const month = props.month;
   const [rows, setRows] = useState([]);
   const [total, setTotal] = useState(0);
-  const API = process.env.REACT_APP_API_KEY + "/transections";
+  const API = process.env.REACT_APP_API_KEY + "api/transections";
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 

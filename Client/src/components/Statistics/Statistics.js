@@ -10,7 +10,7 @@ const Statistics = (props) => {
         <div className="card-body text-center">
           <div className="cardText text-center">
             <p>Total Sale</p>
-            <p>{amount}</p>
+            <p>{parseFloat(amount).toFixed(2)}</p>
           </div>
           <div className="cardText text-center">
             <p>Total Sold Items</p>

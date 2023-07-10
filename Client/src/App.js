@@ -8,7 +8,7 @@ import BarChart from "./components/BarChat/BarChart";
 import PieChart from "./components/PieChart/PieChart";
 import Statistics from "./components/Statistics/Statistics";
 function App() {
-  const API = process.env.REACT_APP_API_KEY;
+  const API = process.env.REACT_APP_API_KEY + "api/combined";
   const [month, setMonth] = useState(3);
   const [response, setResponse] = useState({
     statistics: {},
@@ -20,7 +20,7 @@ function App() {
   }, [month]);
   const fetchbackend = async () => {
     await axios
-      .get(API + "/combined", {
+      .get(API, {
         params: {
           month: month,
         },
