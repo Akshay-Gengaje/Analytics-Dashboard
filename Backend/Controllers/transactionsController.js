@@ -3,15 +3,15 @@ const Product = model.Product;
 
 exports.getTransections = async (req, res) => {
   try {
-    const body = JSON.parse(req.query.body);
+    const body = req.query.body;
     const search = body.search || "";
     const _page = body.page || 1;
     const _limit = body.limit || 10;
-    const _month = body.month || "";
+    const _month = body.month || 0;
     const _skip = (_page - 1) * _limit;
 
     const products = await Product.find(
-      _month !== ""
+      _month != 0
         ? {
             $or: [
               { title: { $regex: search, $options: "i" } },
@@ -34,7 +34,7 @@ exports.getTransections = async (req, res) => {
       .limit(parseInt(_limit));
 
     const total = await Product.countDocuments(
-      _month != ""
+      _month != 0
         ? {
             $or: [
               { title: { $regex: search, $options: "i" } },

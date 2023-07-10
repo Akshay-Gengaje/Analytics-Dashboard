@@ -14,7 +14,7 @@ const TransationsTable = (props) => {
   const month = props.month;
   const [rows, setRows] = useState([]);
   const [total, setTotal] = useState(0);
-  const API = process.env.REACT_APP_API_KEY + "api/transections";
+  const API = process.env.REACT_APP_API_KEY;
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -39,12 +39,13 @@ const TransationsTable = (props) => {
     };
 
     await axios
-      .get(API, {
+      .get("http://localhost:8000/api/transections", {
         params: {
           body,
         },
       })
       .then(async (res) => {
+        console.log(res.data)
         setRows([...res.data.products]);
         setTotal(res.data.total);
       })
@@ -70,6 +71,9 @@ const TransationsTable = (props) => {
             <TableContainer sx={{ maxHeight: 500 }}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
+                <TableRow>
+                  <TableCell colSpan={9} align="right"> SEARCH</TableCell>
+                </TableRow>
                   <TableRow className="th-row">
                     <TableCell align="center" size="medium">
                       ID
