@@ -9,9 +9,9 @@ import PieChart from "./components/PieChart/PieChart";
 import Statistics from "./components/Statistics/Statistics";
 function App() {
   const API = process.env.REACT_APP_API_KEY + "api/combined";
-  const [month, setMonth] = useState({ name: "March", number: 3 },);
+  const [month, setMonth] = useState({ name: "March", number: 3 });
   const [response, setResponse] = useState({
-    statistics: {},
+    statistics: { amount: 0, sold: 0, unsold: 0 },
     barChartData: {},
     pieChartData: [],
   });
@@ -39,14 +39,14 @@ function App() {
           <div className="row d-flex justify-content-between ">
             <div className="col-md-6">
               <div className="col-md-12">
-                <Statistics response={response.statistics} month ={month} />
+                <Statistics response={response.statistics} month={month} />
               </div>
               <div className="col-md-12">
-                <BarChart response={response.barChartData} month = {month}/>
+                <BarChart response={response.barChartData} month={month} />
               </div>
             </div>
             <div className="col-md-6">
-              <PieChart response={response.pieChartData} month ={month}/>
+              <PieChart response={response.pieChartData} month={month} />
             </div>
           </div>
         </div>
