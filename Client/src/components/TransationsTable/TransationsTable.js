@@ -54,7 +54,7 @@ const TransationsTable = (props) => {
       limit: rowsPerPage,
       month: month.number,
     };
-    console.log("BODY :", body);
+
     await axios
       .get(API + "api/transections", {
         params: {
@@ -62,7 +62,7 @@ const TransationsTable = (props) => {
         },
       })
       .then(async (res) => {
-        console.log(res.data);
+
         setRows([...res.data.products]);
         setTotal(res.data.total);
         setStatus(res.data.status);
