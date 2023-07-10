@@ -27,7 +27,6 @@ const Nav = (props) => {
   const toggle = () => {
     setDropdownOpen((prevState) => !prevState);
   };
-  console.log(month);
 
   return (
     <div className="container">

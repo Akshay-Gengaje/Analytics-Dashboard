@@ -18,21 +18,27 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-export const options = {
+const options = {
   responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
+  maintainAspectRatio: false,
+  scales: {
+    x: {
+      grid: {
+        display: false,
+      },
     },
-    title: {
-      display: true,
-      text: "Transactions Barchart",
-      font: {
-        size: 16,
+    y: {
+      grid: {
+        display: true,
+      },
+      beginAtZero: true,
+      ticks: {
+        stepSize: 1, // Set the grid interval to 1 unit
       },
     },
   },
 };
+
 const BarChart = (props) => {
   const labels = Object.keys(props.response);
   const values = Object.values(props.response);
@@ -47,15 +53,13 @@ const BarChart = (props) => {
     ],
   };
   return (
-  
-      <div className=" bg d-flex justify-content-center">
-        {labels.length != 0 ? (
-          <Bar options={options} data={data} className="barchart"></Bar>
-        ) : (
-          <h1 className="text-center">Loading</h1>
-        )}
-      </div>
-   
+    <div className=" bg d-flex justify-content-center">
+      {labels.length != 0 ? (
+        <Bar options={options} data={data}  className="barchart"></Bar>
+      ) : (
+        <h1 className="text-center">Loading</h1>
+      )}
+    </div>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -9,6 +9,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import axios from "axios";
 import "./transations.css";
+import { TextField } from "@mui/material";
 
 const TransationsTable = (props) => {
   const month = props.month;
@@ -17,7 +18,26 @@ const TransationsTable = (props) => {
   const API = process.env.REACT_APP_API_KEY;
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [search, setSearch] = useState("");
+  const [status, setStatus] = useState("");
 
+  useEffect(() => {
+    fetchAPI();
+  }, [page, rowsPerPage, month]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchAPI();
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [search]);
+
+  const handleChanges = (event) => {
+    const { value } = event.target;
+    setSearch(value);
+  };
   const handleChangePage = async (event, newPage) => {
     setPage(newPage);
   };
@@ -26,13 +46,10 @@ const TransationsTable = (props) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  useEffect(() => {
-    fetchAPI();
-  }, [page, rowsPerPage, month]);
 
   const fetchAPI = async () => {
     const body = {
-      search: "",
+      search: search,
       page: page + 1,
       limit: rowsPerPage,
       month: month,
@@ -48,6 +65,7 @@ const TransationsTable = (props) => {
         console.log(res.data);
         setRows([...res.data.products]);
         setTotal(res.data.total);
+        setStatus(res.data.status);
       })
       .catch((err) => console.log(err));
   };
@@ -61,22 +79,23 @@ const TransationsTable = (props) => {
             sx={{
               width: "100%",
               overflow: "hidden",
-              // background: "transparent",
-              // backgroundColor: "rgba(239, 231, 235, 0.3)",
               backgroundColor: "#FFFFFF",
               boxShadow:
                 "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px",
             }}
           >
+            <div className="searchBar">
+              <TextField
+                id="outlined-basic"
+                label="Search"
+                variant="outlined"
+                onChange={handleChanges}
+              />
+            </div>
+
             <TableContainer sx={{ maxHeight: 500 }}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
-                  <TableRow>
-                    <TableCell colSpan={9} align="right">
-                      {" "}
-                      SEARCH
-                    </TableCell>
-                  </TableRow>
                   <TableRow className="th-row">
                     <TableCell align="center" size="medium">
                       ID
@@ -149,7 +168,7 @@ const TransationsTable = (props) => {
                   ) : (
                     <TableRow>
                       <TableCell colSpan={8} className="text-center">
-                        Loading
+                        {status !== "NotFound" ? "Loading" : "Not Found"}
                       </TableCell>
                     </TableRow>
                   )}
