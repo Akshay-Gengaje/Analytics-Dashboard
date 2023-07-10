@@ -39,13 +39,13 @@ const TransationsTable = (props) => {
     };
 
     await axios
-      .get("http://localhost:8000/api/transections", {
+      .get(API + "api/transections", {
         params: {
           body,
         },
       })
       .then(async (res) => {
-        console.log(res.data)
+        console.log(res.data);
         setRows([...res.data.products]);
         setTotal(res.data.total);
       })
@@ -57,7 +57,7 @@ const TransationsTable = (props) => {
       <div className="row">
         <div className="col-12">
           <Paper
-          className="paper"
+            className="paper"
             sx={{
               width: "100%",
               overflow: "hidden",
@@ -71,9 +71,12 @@ const TransationsTable = (props) => {
             <TableContainer sx={{ maxHeight: 500 }}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
-                <TableRow>
-                  <TableCell colSpan={9} align="right"> SEARCH</TableCell>
-                </TableRow>
+                  <TableRow>
+                    <TableCell colSpan={9} align="right">
+                      {" "}
+                      SEARCH
+                    </TableCell>
+                  </TableRow>
                   <TableRow className="th-row">
                     <TableCell align="center" size="medium">
                       ID
@@ -144,8 +147,10 @@ const TransationsTable = (props) => {
                       );
                     })
                   ) : (
-                    <TableRow >
-                      <TableCell colSpan={8} className="text-center">Loading</TableCell>
+                    <TableRow>
+                      <TableCell colSpan={8} className="text-center">
+                        Loading
+                      </TableCell>
                     </TableRow>
                   )}
                 </TableBody>
@@ -169,5 +174,3 @@ const TransationsTable = (props) => {
 };
 
 export default TransationsTable;
-
-
