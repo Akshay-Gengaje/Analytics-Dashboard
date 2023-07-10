@@ -27,7 +27,12 @@ const TransationsTable = (props) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      fetchAPI();
+      if (search == "") {
+        setPage(0);
+        fetchAPI();
+      } else {
+        fetchAPI();
+      }
     }, 1000);
     return () => {
       clearTimeout(timer);
@@ -50,11 +55,11 @@ const TransationsTable = (props) => {
   const fetchAPI = async () => {
     const body = {
       search: search,
-      page: search == "" ? 1 : page + 1,
+      page: page + 1,
       limit: rowsPerPage,
       month: month.number,
     };
-
+    console.log(body);
     await axios
       .get(API + "api/transections", {
         params: {
@@ -62,7 +67,6 @@ const TransationsTable = (props) => {
         },
       })
       .then(async (res) => {
-
         setRows([...res.data.products]);
         setTotal(res.data.total);
         setStatus(res.data.status);
