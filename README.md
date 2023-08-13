@@ -5,6 +5,10 @@ Deployed Application
 
 The deployed application can be accessed at the following URL: https://product-dashboard-4tj5.onrender.com/
 
+Deployed Application
+
+The deployed application can be accessed at the following URL: https://product-dashboard-4tj5.onrender.com/
+
 # Backend
 
 The backend of this project is developed using Express.js, a popular web application framework for Node.js. Express.js simplifies the process of building robust and scalable web applications by providing a set of flexible features and tools.
